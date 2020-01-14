@@ -129,20 +129,33 @@
 
         public function editUser($fname,$lname,$email,$pass,$id){
                 
-                $sql = "UPDATE user INNER JOIN login ON user.loginid = login.loginid
-                        SET user.first_name = '$fname',
-                            user.last_name = '$lname',
-                            login.email = '$email',
-                            login.password = '$pass' WHERE user.loginid = '$id'";
-    
-                
-                if($this->conn->query($sql)){
-                    header("Location: edituser.php");
-    
-                }else{
-                    echo "Error is updating." .$this->conn->error;
+            $sql = "UPDATE user INNER JOIN login ON user.loginid = login.loginid
+                    SET user.first_name = '$fname',
+                        user.last_name = '$lname',
+                        login.email = '$email',
+                        login.password = '$pass' WHERE user.loginid = '$id'";
+
+            
+            if($this->conn->query($sql)){
+                header("Location: edituser.php");
+
+            }else{
+                echo "Error is updating." .$this->conn->error;
+            }
+        } 
+
+        public function getSpecificUser($id){
+            $sql = "SELECT * FROM user INNER JOIN login On user.loginid = login.loginid
+                    WHERE user.loginid = '$id'";
+
+            $result = $this->conn->query($sql);
+
+            $row = $result->fetch_assoc();
+
+            return $row;
                 }
-            }   
+        
+
     }
 
 ?>
