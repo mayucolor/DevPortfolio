@@ -1,9 +1,10 @@
 <?php
+    session_start();
     require_once 'classes/sql.php';
 
-    $users = new SQL;
+    $furniture = new SQL;
 
-    $result = $users->getUsers();
+    $result = $furniture->getFurnitureList();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -28,27 +29,26 @@
         
     </div>
     <table class="table w-75 mx-auto" style="table-layout:fixed;">
-        <th>LOGIN ID</th>
-        <th>USER ID</th>
-        <th>FIRST NAME</th>
-        <th>LAST NAME</th>
-        <th>ADDRESS</th>
-        <th>PHONE NUMBER</th>
-        <th>EMAIL</th>
-        <th>PASSWORD</th>
+        <th>ITEM ID</th>
+        <th>ITEM NAME</th>
+        <th>CATEGORY</th>
+        <th>ITEM PRICE</th>
+        <th>IMAGE</th>
+        <th></th>
+        <th></th>
         
         <?php
-                foreach($result as $row){
-                echo"<tr>
-                        <td>".$row['loginid']."</td>
-                        <td>".$row['userid']."</td>
-                        <td>".$row['first_name']."</td>
-                        <td>".$row['last_name']."</td>
-                        <td>".$row['address']."</td>
-                        <td>".$row['phoneNum']."</td>
-                        <td>".$row['email']."</td>
-                        <td>".$row['password']."</td>
-                    </tr>";
+            foreach($result as $row){
+                $id = $row['item_id'];
+            echo"<tr>
+                    <td>".$row['item_id']."</td>
+                    <td>".$row['item_name']."</td>
+                    <td>".$row['category']."</td>
+                    <td> ".number_format($row['item_price'])."</td>
+                    <td><img src=upload/".$row['image']." class='w-50'></td>
+                    <td> <a href='editFurniture.php?item_id=$id'> Edit </a></td>
+                    <td> <a href='action.php?actiontype=delete2&id=$id'> Delete </a></td>
+                </tr>";
             }
             
         ?>

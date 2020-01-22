@@ -74,6 +74,16 @@
         $phone = $_POST['phone'];
         
         $s->insertUserInfor($address,$phone);
+
+
+    }else if($_POST["update"]){ 
+        $name = $_POST["name"];
+        $category = $_POST["category"];
+        $price = $_POST["price"];
+        $pic = $_POST["pic"];
+        $id = $_POST["id"];
+        
+        $s->updateItems($name, $category, $price ,$pic , $id);
     
     }else if($_GET['actiontype'] == 'delete'){
         $id = $_GET['id'];
@@ -84,6 +94,12 @@
         $id = $_GET['id'];
 
         $s->deleteOrder($id);
+
+    }else if($_GET['actiontype'] == 'delete2'){
+        $id = $_GET['id'];
+
+        $s->deleteFurniture($id);
+
     }
     
 ?>
