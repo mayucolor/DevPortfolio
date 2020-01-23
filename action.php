@@ -74,7 +74,31 @@
         $phone = $_POST['phone'];
         
         $s->insertUserInfor($address,$phone);
-    
+
+
+    }else if(isset($_POST["update"])){ 
+        $name = $_POST["name"];
+        $category = $_POST["category"];
+        $price = $_POST["price"];
+        $pic = $_FILES['pic']['name'];
+        $id = $_POST["id"];
+        
+        $target_dir = "upload/";
+        $target_file = $target_dir . basename($_FILES["pic"]);
+        $ans = $s->updateItems($name, $category, $price ,$pic , $id);
+        if($ans == 1){
+            
+            move_uploaded_file($_FILES['pic'],$target_file);
+            
+            header("Location: userLoginDisplay.php");
+        }else{
+            echo 'Error';
+        }
+
+    }else if(isset($_POST['confirm'])){
+
+        $s->updateStatus($id);
+
     }else if($_GET['actiontype'] == 'delete'){
         $id = $_GET['id'];
 
@@ -84,6 +108,12 @@
         $id = $_GET['id'];
 
         $s->deleteOrder($id);
+
+    }else if($_GET['actiontype'] == 'delete2'){
+        $id = $_GET['id'];
+
+        $s->deleteFurniture($id);
+
     }
     
 ?>

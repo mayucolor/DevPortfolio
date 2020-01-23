@@ -23,13 +23,14 @@
 <div class="bg-success p-3 mb-5">
         ORDER LIST
         <a href="adminmenu.php" class="text-right text-white text-decoration-none ml-5">ADD FURNITURE</a>
+        <a href="furniturelist.php" class="text-right text-white text-decoration-none ml-5">FURNITURE LIST</a>
         <a href="messagedisplay.php" class="text-right text-white text-decoration-none ml-5">MESSAGE</a>
         <a href="orderlist.php" class="text-right text-white text-decoration-none ml-5">ORDER LIST</a>
         <a href="userlist.php" class="text-right text-white text-decoration-none ml-5">USERS</a>
         <a href="logout.php" class="text-warning text-decoration-none ml-5">LOG OUT</a>
         
     </div>
-    <table class="table" style="table-layout:fixed;">
+    <table class="table w-75 mx-auto" style="table-layout:fixed;">
         <th>ORDER ID</th>
         <th>FIRST NAME</th>
         <th>LAST NAME</th>

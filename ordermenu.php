@@ -60,7 +60,6 @@
      
          $buy = new SQL;
          
-     
          $result = $buy->displayOrder();
         echo "<div class='text-center'>";
         echo "";
@@ -68,6 +67,7 @@
          echo "<div class='card w-25 mx-auto pl-3 pt-1'>";  
           $total = 0;  
               foreach($result as $row){
+                if($row['status'] =='X'){ 
                 $id = $row['id'];
                 echo "Item Name : ".$row['item_name']."<br>";
                 echo "Item Price : $ ".number_format($row['item_price'])."<br>";
@@ -75,16 +75,20 @@
                 echo "<a href='action.php?actiontype=del&id=$id' class='text-success border-bottom w-75 text-right'> Delete </a><br>";
                 $total =$total+$row['item_price'];
               } 
-                     
+              }      
                 echo "<h4>Total: $ ".number_format($total)."</h4>";
-              
+            
           echo "</div>";
-          
          ?>   
-         <div class="mt-3 w-25 mx-auto">
-           <input type="button" value="Confirm" class="form-control btn btn-outline-success" onclick="location.href='addInfor.php'">
-           <input type="button" value="Back To Orderpage" class="form-control btn btn-outline-success mt-2" onclick="location.href='userLoginDisplay.php'">
-         </div>
+
+         <form action="action.php" method="post">
+            <div class="mt-3 w-25 mx-auto">
+              <input type="submit" name="confirm" value="Confirm" class="form-control btn btn-outline-success" onclick="location.href='addInfor.php'">
+              <input type="submit" value="Back To Orderpage" class="form-control btn btn-outline-success mt-2" onclick="location.href='userLoginDisplay.php'">
+            </div>
+         </form>
+         
                  
 </body>
 </html>
+        
